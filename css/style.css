@@ -1,0 +1,57 @@
+body{
+    color: white;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    background: linear-gradient(  #70acf4, #2f81e5 );
+}
+#fetch{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+}
+.signin{
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+.icon{
+    color: white;
+    position: absolute;
+    top: 22px;
+    left: 4px;
+}
+input{
+    background-color: #69a7f0;
+    border: none;
+    padding: 5px 0;
+    outline: none;
+    border-radius: 3px;
+    caret-color: white;
+    text-indent:25px;
+}
+label{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    position: relative;
+}
+.login_btn{
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 20px;
+    color: 	#2f81e5;
+    background-color: white;
+    border: none;
+    padding: 5px 0;
+    border-radius: 10px;
+}
+#demo{
+    font-size: 18px;
+}
+.welcome{
+    font-size: 18px;
+}

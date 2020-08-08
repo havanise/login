@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/media.css">
+</head>
+<body>
+    <form name="fetch" id="fetch">
+        <p class="signin">Sign In</p>
+        <label>
+            Username:
+            <i class="fa fa-user-o icon" aria-hidden="true"></i>
+            <input type="text" name="username">
+        </label>
+        <label>
+            Password:
+            <i class="fa fa-key icon" aria-hidden="true"></i>
+            <input type="text" name="password">
+        </label>
+        <button type="submit" class="login_btn">LOGIN</button>
+        <span id="demo"></span>
+    </form>
+    <script>
+        document.getElementById('fetch').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(e.target);
+            const inpval = Array.from(formData.entries()).reduce((memo, pair) => ({
+                ...memo,
+                [pair[0]]: pair[1],
+            }), {});
+            fetch('http://95.86.128.14:26488/api/auth/signin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(inpval)
+            }).then((response) => {
+                if (response.ok) {
+                    return response.json()
+                } else {
+                    document.getElementById("demo").innerHTML = "user not found";
+                }
+            })
+            .then((data) => {
+                let userName = data.name;
+                localStorage.setItem('user', userName);
+                window.location.href = "http://localhost:63342/request/index.html";
+            })
+        });
+
+
+
+        // const form = document.forms.fetch;
+        //
+        // const postForm = body => {
+        //     return fetch('//httpbin.org/post', {
+        //         method: 'POST',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         },
+        //         body
+        //     });
+        // };
+        //
+        // const handleSubmit = async (e) => {
+        //     e.preventDefault();
+        //     const body = JSON.stringify(Object.fromEntries(new FormData(e.target)));
+        //
+        //     const res = await postForm(body);
+        //     const data = await res.json();
+        //
+        //     console.log(data.json);
+        // };
+        //
+        // form.addEventListener('submit', handleSubmit);
+
+
+
+
+
+    </script>
+</body>
+</html>
